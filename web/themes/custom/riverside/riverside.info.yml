@@ -1,0 +1,32 @@
+name: Riverside commans
+type: theme
+base theme: claro
+description: "riverside commans custom theme"
+version: VERSION
+core_version_requirement: ^11
+libraries:
+  - riverside/global-styling
+
+regions:
+  nav_bar: Navigation
+  header: Header
+  pre_content: Pre-content
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  top_ads: Top Ads
+  right_ads: Right Ads
+  content: Content
+  left_ads: Left Ads
+  bottom_ads: Bottom Ads
+  page_top: Page top
+  page_bottom: Page bottom
+  sidebar_first: First sidebar
+  sidebar_second: Second sidebar
+  footer_first: First footer
+  footer_grid_1: "Footer 1"
+  footer_grid_2: "Footer 2"
+  footer_grid_3: "Footer 3"
+  footer_grid_4: "Footer 4"
+  bottom_footer_left: "Bottom Footer Left"
+  bottom_footer_right: "Bottom Footer Right"
+  footer_grid_5: "Footer Policy"

@@ -1,0 +1,9 @@
+name: 'General API'
+type: module
+description: 'Programmatically fetch data from Drupal REST API.'
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:node
+  - drupal:rest
+  - drupal:serialization

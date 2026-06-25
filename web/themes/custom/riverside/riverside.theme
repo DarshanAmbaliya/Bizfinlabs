@@ -1,0 +1,59 @@
+<?php
+
+use Drupal\Core\Datetime\DrupalDateTime;
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function riverside_preprocess_node(array &$variables)
+{
+  $node = $variables['node'];
+
+  if ($node->bundle() === 'program') {
+    if ($node->hasField('field_schedule') && !$node->get('field_schedule')->isEmpty()) {
+      $item = $node->get('field_schedule')->first();
+
+      $start = new DrupalDateTime($item->value);
+      $end = new DrupalDateTime($item->end_value);
+
+      $seconds = $end->getTimestamp() - $start->getTimestamp();
+      $weeks = ceil($seconds / (7 * 24 * 60 * 60));
+
+      $variables['schedule_weeks'] = (int) $weeks;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view_fields().
+ */
+function riverside_preprocess_views_view_fields(array &$variables) {
+  $view = $variables['view'];
+
+  if ($view->id() === 'program') {
+
+    $session_time = strip_tags($variables['fields']['field_session_time']->content);
+
+    $variables['session_time_short'] = str_replace(
+      [
+        'Monday',
+        'Tuesdays',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ],
+      [
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat',
+        'Sun',
+      ],
+      $session_time
+    );
+  }
+}
