@@ -249,7 +249,7 @@ ddev start
 
 ddev composer install
 
-#import database
+#import database || 
 
 ddev drush sql-cli < sites/default/files/db/bizfinlabs.sql
 
