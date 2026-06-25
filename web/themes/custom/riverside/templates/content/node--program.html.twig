@@ -76,13 +76,13 @@
 
 	{{ title_prefix }}
 	{% if label and not page %}
-		<h2{{title_attributes}}>
-			<a href="{{ url }}" rel="bookmark">{{ label }}</a>
+	<h2{{title_attributes}}>
+		<a href="{{ url }}" rel="bookmark">{{ label }}</a>
 		</h2>
-	{% endif %}
-	{{ title_suffix }}
+		{% endif %}
+		{{ title_suffix }}
 
-	{% if display_submitted %}
+		{% if display_submitted %}
 		<footer class="node__meta">
 			{{ author_picture }}
 			<div{{author_attributes.addClass('node__submitted')}}>
@@ -91,146 +91,154 @@
 				on
 				{{ date }}{% endtrans %}
 				{{ metadata }}
-			</div>
-		</footer>
-	{% endif %}
-
-
-	<section{{content_attributes.addClass('program-detail-section')}}>
-		<div class="container">
-			<div class="row">
-				<div class="main-title">
-					<div class="category">
-						<p>
-							{{ content.field_category }}
-						</p>
-					</div>
-					<div class="title">
-						<h2>{{ node.getTitle() }}</h2>
-					</div>
-					<div class="short-description">
-						<p>{{ content.field_short_description }}</p>
-					</div>
 				</div>
-				<div class="main-box">
-					<div class="box">
-						<div class="content">
-							<div class="main-image">
-								{{ content.field_media }}
-							</div>
-							<div class="box side-box">
-								<div class="content">
-									<div class="price">
-										<p>${{ content.field_price }}</p>
-									</div>
-									<div class="duration">
-										{{ weeks }}-week course · member price ${{ node.field_price.value * 0.85 }}
-									</div>
-									<hr>
-									<div class="detail">
-										<ul>
-											<li>
-												<span>level</span>
-												<p>{{ content.field_level }}</p>
-											</li>
-											<li>
-												<span>Schedule</span>
-												<p>{{ content.field_session_time }}</p>
-											</li>
-											<li>
-												<span>Dates</span>
-												<p>{{ content.field_schedule }}</p>
-											</li>
-											<li>
-												<span>Session</span>
-												<p>{{ content.field_sessions }}
-													classes</p>
-											</li>
-											<li>
-												<span>Class Size</span>
-												<p>{{ content.field_class_size }}
-													students max</p>
-											</li>
-											<li>
-												<span>Location</span>
-												<p>{{ content.field_location }}</p>
-											</li>
-										</ul>
-									</div>
-									<div class="btn register-btn">
-										<a href="#">Register</a>
-									</div>
-									<div class="btn wishlist-btn">
-										<a href="#">Add to wishlist</a>
-									</div>
-									<div class="note">
-										<span>Free cancellation up to 7 days before the first class.</span>
+		</footer>
+		{% endif %}
+
+
+		<section{{content_attributes.addClass('program-detail-section')}}>
+			<div class="container">
+				<div class="row">
+					<div class="main-title">
+						<div class="category">
+							<p>
+								{{ content.field_category }}
+							</p>
+						</div>
+						<div class="title">
+							<h2>{{ node.getTitle() }}</h2>
+						</div>
+						<div class="short-description">
+							<p>{{ content.field_short_description }}</p>
+						</div>
+					</div>
+					<div class="main-box">
+						<div class="box">
+							<div class="content">
+								<div class="main-image">
+									{{ content.field_media }}
+								</div>
+								<div class="box side-box">
+									<div class="content">
+										<div class="price">
+											{% if node.field_price.value is empty or node.field_price.value == 0 %}
+											<p>Free entry</p>
+											{% else %}
+											<p>${{ node.field_price.value }}</p>
+											{% endif %}
+										</div>
+										<div class="duration">
+											{{ schedule_weeks }}-week course {{ node.field_price.value > 0 ? '· member price $' ~ (node.field_price.value * 0.85) : '' }}
+										</div>
+										<hr>
+										<div class="detail">
+											<ul>
+												<li>
+													<span>level</span>
+													<p>{{ content.field_level }}</p>
+												</li>
+												<li>
+													<span>Schedule</span>
+													<p>{{ content.field_session_time }}</p>
+												</li>
+												<li>
+													<span>Dates</span>
+													<p>{{ node.field_schedule.value|date('M j') }}
+														-
+														{{ node.field_schedule.end_value|date('M j') }}
+													</p>
+												</li>
+												<li>
+													<span>Session</span>
+													<p>{{ content.field_sessions }}
+														classes</p>
+												</li>
+												<li>
+													<span>Class Size</span>
+													<p>{{ content.field_class_size }}
+														students max</p>
+												</li>
+												<li>
+													<span>Location</span>
+													<p>{{ content.field_location }}</p>
+												</li>
+											</ul>
+										</div>
+										<div class="btn register-btn">
+											<a href="#">Register</a>
+										</div>
+										<div class="btn wishlist-btn">
+											<a href="#">Add to wishlist</a>
+										</div>
+										<div class="note">
+											<span>Free cancellation up to 7 days before the first class.</span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="detail">
-								{{ content.body }}
+								<div class="detail">
+									{{ content.body }}
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="box side-box">
-						<div class="content">
-							<div class="price">
-								{% if node.field_price.value is empty or node.field_price.value == 0 %}
+						<div class="box side-box">
+							<div class="content">
+								<div class="price">
+									{% if node.field_price.value is empty or node.field_price.value == 0 %}
 									<p>Free entry</p>
-								{% else %}
+									{% else %}
 									<p>${{ node.field_price.value }}</p>
-								{% endif %}
-							</div>
-							<div class="duration">
-								{{ schedule_weeks }}-week course {{ node.field_price.value > 0 ? '· member price $' ~ (node.field_price.value * 0.85) : '' }}
-							</div>
-							<hr>
-							<div class="detail">
-								<ul>
-									<li>
-										<span>level</span>
-										<p>{{ content.field_level }}</p>
-									</li>
-									<li>
-										<span>Schedule</span>
-										<p>{{ content.field_session_time }}</p>
-									</li>
-									<li>
-										<span>Dates</span>
-										<p>{{ node.field_schedule.value|date('M j') }}
-											-
-											{{ node.field_schedule.end_value|date('M j') }}</p>
-									</li>
-									<li>
-										<span>Session</span>
-										<p>{{ content.field_sessions }}
-											classes</p>
-									</li>
-									<li>
-										<span>Class Size</span>
-										<p>{{ content.field_class_size }}
-											students max</p>
-									</li>
-									<li>
-										<span>Location</span>
-										<p>{{ content.field_location }}</p>
-									</li>
-								</ul>
-							</div>
-							<div class="btn register-btn">
-								<a href="#">Register</a>
-							</div>
-							<div class="btn wishlist-btn">
-								<a href="#">Add to wishlist</a>
-							</div>
-							<div class="note">
-								<span>Free cancellation up to 7 days before the first class.</span>
+									{% endif %}
+								</div>
+								<div class="duration">
+									{{ schedule_weeks }}-week course {{ node.field_price.value > 0 ? '· member price $' ~ (node.field_price.value * 0.85) : '' }}
+								</div>
+								<hr>
+								<div class="detail">
+									<ul>
+										<li>
+											<span>level</span>
+											<p>{{ content.field_level }}</p>
+										</li>
+										<li>
+											<span>Schedule</span>
+											<p>{{ content.field_session_time }}</p>
+										</li>
+										<li>
+											<span>Dates</span>
+											<p>{{ node.field_schedule.value|date('M j') }}
+												-
+												{{ node.field_schedule.end_value|date('M j') }}
+											</p>
+										</li>
+										<li>
+											<span>Session</span>
+											<p>{{ content.field_sessions }}
+												classes</p>
+										</li>
+										<li>
+											<span>Class Size</span>
+											<p>{{ content.field_class_size }}
+												students max</p>
+										</li>
+										<li>
+											<span>Location</span>
+											<p>{{ content.field_location }}</p>
+										</li>
+									</ul>
+								</div>
+								<div class="btn register-btn">
+									<a href="#">Register</a>
+								</div>
+								<div class="btn wishlist-btn">
+									<a href="#">Add to wishlist</a>
+								</div>
+								<div class="note">
+									<span>Free cancellation up to 7 days before the first class.</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-</article>
+			</section>
+			</article>

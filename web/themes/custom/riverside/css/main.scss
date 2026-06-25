@@ -178,6 +178,18 @@
                 display: none;
                 position: unset;
                 width: 100%;
+
+                .detail {
+                  ul {
+                    padding: 0;
+
+                    li {
+                      p {
+                        padding: 0;
+                      }
+                    }
+                  }
+                }
               }
 
               .detail {

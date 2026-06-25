@@ -456,6 +456,7 @@ footer .container .row .sub-footer ul li a {
     padding-top: 10px;
   }
   header .layout-container .main-menu-div .menubar li:last-child a {
+    width: -moz-max-content;
     width: max-content;
     padding: 12px 20px;
   }

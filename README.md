@@ -1,4 +1,5 @@
-Riverside commans Task Drupal Project
+Riverside commans Task Drupal Project (Video-Link = https://www.awesomescreenshot.com/video/53972069?key=6125475f3bcddb50755a08088791a929)
+site screenshot path(/site_screenshot)
 Project Overview
 
 This project is built on Drupal and includes a custom Program content management solution, Views integration, taxonomy-based filtering, custom REST APIs, theming, accessibility improvements, and SEO enhancements.
@@ -17,7 +18,6 @@ ddev composer install
 3. Import Database
 
 Database file location:
-
 sites/default/files/db/bizfinlabs.sql
 
 Import database:
@@ -193,17 +193,13 @@ Custom REST Resource Module
 Custom Theme
 riverside
 
-1. Code Security
-As per this Task, you Told me to push all the code on Git by creating public repository rather then private. Due to public directory, anyone can access this assignment(code, DB, etc.). I can make it private and then i can grant you an access for security reason.
-
-2. Figma
+1. Figma
 Improve Figma design, i do not understand that exactly where i need to add hover effect, what would be font color on hover
 
-3. REST API Requirements
-
+2. REST API Requirements
 Current implementation provides Program content via custom REST resource.
 
-Please confirm:
+3. Please confirm:
 
 Are additional fields required in API response?
 Is pagination required?
